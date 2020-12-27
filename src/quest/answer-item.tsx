@@ -1,31 +1,25 @@
-import { Button, Grid, makeStyles } from "@material-ui/core"
-import React, { FC, useState } from "react"
+import { Button, makeStyles } from "@material-ui/core"
+import React, { FC } from "react"
 import { green, red } from "../main/theme"
 import { TAnswerItem } from "../types"
+import clsx from "clsx"
 
 type TAnswerItemProps = {
-  answer: TAnswerItem
+  answer: TAnswerItem,
+  checkAnswer: Function,
+  isAnswered: boolean,
 }
-export const AnswerItem: FC<TAnswerItemProps> = (props) => {
-  const { answer } = props
-  const classes = useStyles()
-  const [theme, setTheme] = useState(classes.root)
-
-  const checkAnswer = () => {
-    if (!!answer.is_right) {
-      setTheme(classes.right)
-      // setScore(score + 1)
-    } else {
-      setTheme(classes.wrong)
-    }
-  }
+export const AnswerItem: FC<TAnswerItemProps> = ({ answer, isAnswered, checkAnswer }) => {
+  const { root, correct, wrong, } = useStyles()
 
   return (
-    <Grid item xs={5} className={classes.item}>
-      <Button className={theme} onClick={checkAnswer} variant="contained">
+      <Button
+        disabled={isAnswered}
+        className={clsx(root, isAnswered && (answer.is_right ? correct : wrong))}
+        onClick={() => checkAnswer()}
+        variant="contained">
         {answer.value}
       </Button>
-    </Grid>
   )
 }
 
@@ -37,17 +31,21 @@ const useStyles = makeStyles(() => ({
     fontSize: "16px",
     fontWeight: "bold",
     variant: "contained",
+    flexBasis: 'calc(50% - 14px)',
+    margin: 7,
   },
-  right: {
-    background: green,
+  correct: {
+    background: `${green} !important`,
     color: "#fff",
-    fontSize: "16px",
-    fontWeight: "bold",
+    "&:hover": {
+      background: '#62b162'
+    }
   },
   wrong: {
-    background: red,
+    background: `${red} !important`,
     color: "#fff",
-    fontSize: "16px",
-    fontWeight: "bold",
+    "&:hover": {
+      background: '#d06262'
+    }
   },
 }))
