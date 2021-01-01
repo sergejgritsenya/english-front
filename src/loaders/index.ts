@@ -1,1 +1,1 @@
-export * from "./popular-words.loader"
+export * from "./word-quiz.loader"

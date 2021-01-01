@@ -1,22 +1,41 @@
 import { Button, makeStyles } from "@material-ui/core"
 import clsx from "clsx"
-import React, { FC } from "react"
+import React, { FC, useContext, useState } from "react"
+import { TAnswerItem } from "../api"
+import { AppContext } from "../main"
 import { green, red } from "../main/theme"
-import { TAnswerItem } from "../types"
 
 type TAnswerItemProps = {
   answer: TAnswerItem
-  checkAnswer: (answer: TAnswerItem) => void
+  checkAnswer: () => void
   isAnswered: boolean
 }
-export const AnswerItem: FC<TAnswerItemProps> = ({ answer, isAnswered, checkAnswer }) => {
+export const AnswerItem: FC<TAnswerItemProps> = ({
+  answer,
+  checkAnswer,
+  isAnswered,
+}) => {
+  const { addPoint } = useContext(AppContext)
   const { root, correct, wrong } = useStyles()
+  const [isSelected, setIsSelected] = useState<boolean>(false)
+
+  const selectAnswer = () => {
+    checkAnswer()
+    setIsSelected(true)
+    if (answer.is_correct) {
+      addPoint()
+    }
+  }
 
   return (
     <Button
       disabled={isAnswered}
-      className={clsx(root, isAnswered && (answer.is_correct ? correct : wrong))}
-      onClick={() => checkAnswer(answer)}
+      className={clsx(
+        root,
+        (isSelected || (isAnswered && answer.is_correct)) &&
+          (answer.is_correct ? correct : wrong)
+      )}
+      onClick={selectAnswer}
       variant="contained"
     >
       {answer.value}

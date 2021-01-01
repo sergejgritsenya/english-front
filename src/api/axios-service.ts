@@ -1,8 +1,7 @@
 import axios, { AxiosInstance } from "axios"
-import { TQuestionItem } from "../types"
 
-class AxiosService {
-  axios: AxiosInstance
+export class AxiosService {
+  private axios: AxiosInstance
   private static instance: AxiosService
 
   private constructor() {
@@ -18,10 +17,8 @@ class AxiosService {
     return AxiosService.instance
   }
 
-  public async start() {
-    const res = await this.axios.get<TQuestionItem[]>("/start")
-    return res.data
+  public async get<T>(url: string): Promise<T> {
+    const { data } = await this.axios.get<T>(url)
+    return data
   }
 }
-
-export const useAxios = () => AxiosService.init()

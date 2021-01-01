@@ -1,23 +1,17 @@
 import { Card, CardContent, makeStyles, Typography } from "@material-ui/core"
-import React, { FC, useContext, useState } from "react"
-import { AppContext } from "../main/context"
+import React, { FC, useState } from "react"
+import { TQuestionItem } from "../api"
 import { main } from "../main/theme"
-import { TAnswerItem, TQuestionItem } from "../types"
 import { AnswerItem } from "./answer-item"
 
 type TQuestionItemProps = {
   question: TQuestionItem
 }
 export const QuestionItem: FC<TQuestionItemProps> = ({ question }) => {
-  const { addPoint } = useContext(AppContext)
-
   const { title, cardContent, card, actions } = useStyles()
-  const [isAnswered, setIsAnswered] = useState(false)
+  const [isAnswered, setIsAnswered] = useState<boolean>(false)
 
-  const checkAnswer = (answer: TAnswerItem) => {
-    if (answer.is_correct) {
-      addPoint()
-    }
+  const checkAnswer = () => {
     setIsAnswered(true)
   }
 
@@ -30,7 +24,12 @@ export const QuestionItem: FC<TQuestionItemProps> = ({ question }) => {
       </CardContent>
       <div className={actions}>
         {question.values.map((answer, id) => (
-          <AnswerItem key={id} answer={answer} checkAnswer={checkAnswer} isAnswered={isAnswered} />
+          <AnswerItem
+            key={id}
+            answer={answer}
+            checkAnswer={checkAnswer}
+            isAnswered={isAnswered}
+          />
         ))}
       </div>
     </Card>

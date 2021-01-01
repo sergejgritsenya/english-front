@@ -7,3 +7,5 @@ export type TQuestionItem = {
   key: string
   values: TAnswerItem[]
 }
+
+export type TQuizResponse = TQuestionItem[]
