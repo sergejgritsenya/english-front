@@ -1,6 +1,6 @@
 export type TAnswerItem = {
   value: string
-  is_right: boolean
+  is_correct: boolean
 }
 
 export type TQuestionItem = {

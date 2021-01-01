@@ -13,7 +13,7 @@ export const PopularWordsLoader: FC = () => {
   }
 
   useEffect(() => {
-      load()
+    load()
   }, [])
 
   if (!questions) {
