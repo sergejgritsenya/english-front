@@ -1,9 +1,10 @@
 import { AppBar, Toolbar, Typography } from "@material-ui/core"
-import React, { FC, useContext } from "react"
-import { AppContext } from "./context"
+import React, { FC } from "react"
 
-export const AppHeader: FC = () => {
-  const { score } = useContext(AppContext)
+type TQuizHeaderProps = {
+  score: number
+}
+export const QuizHeader: FC<TQuizHeaderProps> = ({ score }) => {
   return (
     <AppBar position="fixed">
       <Toolbar>

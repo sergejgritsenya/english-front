@@ -1,11 +1,11 @@
-export type TAnswerItem = {
-  value: string
+type TAnswerItem = {
+  answer: string
   is_correct: boolean
 }
 
-export type TQuestionItem = {
-  key: string
-  values: TAnswerItem[]
+type TQuestionItem = {
+  question: string
+  answers: TAnswerItem[]
 }
 
 export type TQuizResponse = TQuestionItem[]

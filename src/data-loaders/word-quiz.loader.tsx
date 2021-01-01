@@ -19,5 +19,5 @@ export const WordQuizLoader: FC = () => {
     return null
   }
 
-  return <QuizRoot quiz={quiz} />
+  return <QuizRoot questions={quiz} />
 }

@@ -1,38 +1,38 @@
 import { Card, CardContent, makeStyles, Typography } from "@material-ui/core"
-import React, { FC, useState } from "react"
-import { TQuestionItem } from "../api"
+import { Observer } from "mobx-react-lite"
+import React, { FC } from "react"
 import { main } from "../main/theme"
+import { IQuestionModel } from "../models"
 import { AnswerItem } from "./answer-item"
 
 type TQuestionItemProps = {
-  question: TQuestionItem
+  question: IQuestionModel
 }
 export const QuestionItem: FC<TQuestionItemProps> = ({ question }) => {
   const { title, card, cardContent, actions } = useStyles()
-  const [isAnswered, setIsAnswered] = useState<boolean>(false)
-
-  const checkAnswer = () => {
-    setIsAnswered(true)
-  }
 
   return (
-    <Card className={card}>
-      <CardContent className={cardContent}>
-        <Typography variant="h5" className={title} component="h2">
-          {question.key}
-        </Typography>
-      </CardContent>
-      <div className={actions}>
-        {question.values.map((answer, id) => (
-          <AnswerItem
-            key={id}
-            answer={answer}
-            checkAnswer={checkAnswer}
-            isAnswered={isAnswered}
-          />
-        ))}
-      </div>
-    </Card>
+    <Observer>
+      {() => (
+        <Card className={card}>
+          <CardContent className={cardContent}>
+            <Typography variant="h5" className={title} component="h2">
+              {question.question}
+            </Typography>
+          </CardContent>
+          <div className={actions}>
+            {question.answers.map((answer, id) => (
+              <AnswerItem
+                key={id}
+                answer={answer}
+                selectAnswer={question.selectAnswer}
+                isAnswered={question.is_answered}
+              />
+            ))}
+          </div>
+        </Card>
+      )}
+    </Observer>
   )
 }
 
