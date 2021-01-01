@@ -44,9 +44,6 @@ export const AnswerItem: FC<TAnswerItemProps> = ({
 }
 
 const useStyles = makeStyles(() => ({
-  item: {
-    padding: "10px 5px",
-  },
   root: {
     fontSize: "16px",
     fontWeight: "bold",
@@ -56,16 +53,10 @@ const useStyles = makeStyles(() => ({
   },
   correct: {
     background: `${green} !important`,
-    color: "#fff",
-    "&:hover": {
-      background: "#62b162",
-    },
+    color: "#fff !important",
   },
   wrong: {
     background: `${red} !important`,
-    color: "#fff",
-    "&:hover": {
-      background: "#d06262",
-    },
+    color: "#fff !important",
   },
 }))

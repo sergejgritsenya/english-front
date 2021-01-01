@@ -8,7 +8,7 @@ type TQuestionItemProps = {
   question: TQuestionItem
 }
 export const QuestionItem: FC<TQuestionItemProps> = ({ question }) => {
-  const { title, cardContent, card, actions } = useStyles()
+  const { title, card, cardContent, actions } = useStyles()
   const [isAnswered, setIsAnswered] = useState<boolean>(false)
 
   const checkAnswer = () => {
@@ -36,7 +36,7 @@ export const QuestionItem: FC<TQuestionItemProps> = ({ question }) => {
   )
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   card: {
     margin: "15px 0",
   },
@@ -54,17 +54,5 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 500,
     fontSize: 35,
     textAlign: "center",
-  },
-  header: {
-    padding: "25px 0",
-    background: "#ec7a7a",
-    color: "#fff",
-    borderRadius: "15px 15px 0 0",
-    borderBottom: "2px solid #eee",
-  },
-  answers: {
-    display: "flex",
-    flexWrap: "wrap",
-    flexDirection: "row",
   },
 }))
