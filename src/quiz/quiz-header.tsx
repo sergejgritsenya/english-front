@@ -24,7 +24,7 @@ export const QuizHeader: FC<TQuizHeaderProps> = ({ reset, score }) => {
           </Typography>
 
           <Button className={btn} onClick={reset}>
-            Reset
+            New test
           </Button>
         </Toolbar>
       </AppBar>
