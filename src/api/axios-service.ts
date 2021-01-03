@@ -17,8 +17,8 @@ export class AxiosService {
     return AxiosService.instance
   }
 
-  public async get<T>(url: string): Promise<T> {
-    const { data } = await this.axios.get<T>(url)
+  public async post<T>(url: string, body: any = {}): Promise<T> {
+    const { data } = await this.axios.post<T>(url, body)
     return data
   }
 }

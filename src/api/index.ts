@@ -1,2 +1,3 @@
+export * from "./api-base"
+export * from "./requests"
 export * from "./responses"
-export * from "./word-quiz.api"

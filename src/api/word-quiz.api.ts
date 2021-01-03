@@ -1,7 +1,9 @@
+import { IApiBase } from "./api-base"
 import { AxiosService } from "./axios-service"
+import { TSettingsRequest } from "./requests"
 import { TQuizResponse } from "./responses"
 
-class WordQuiz {
+export class WordQuiz implements IApiBase {
   private axios: AxiosService
   private static instance: WordQuiz
   private constructor() {
@@ -15,9 +17,7 @@ class WordQuiz {
     return WordQuiz.instance
   }
 
-  public async start() {
-    return this.axios.get<TQuizResponse>("/start")
+  public async start(settings: TSettingsRequest) {
+    return this.axios.post<TQuizResponse>("/start", settings)
   }
 }
-
-export const useWordQuiz = () => WordQuiz.init()
