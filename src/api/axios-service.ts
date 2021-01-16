@@ -6,7 +6,8 @@ export class AxiosService {
 
   private constructor() {
     this.axios = axios.create({
-      baseURL: process.env.REACT_APP_PUBLIC_URL || `http://localhost:4000`,
+      baseURL: "http://18.212.213.136/:4000",
+      // baseURL: process.env.REACT_APP_PUBLIC_URL || `http://18.212.213.136/:4000`,
     })
   }
 
