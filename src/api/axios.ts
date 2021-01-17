@@ -2,7 +2,7 @@ import axios, { AxiosInstance } from "axios"
 
 const { REACT_APP_API_URL: BASE_URL } = process.env
 
-export class AxiosService {
+class AxiosService {
   private axios: AxiosInstance
   private static instance: AxiosService
 
@@ -20,8 +20,9 @@ export class AxiosService {
   }
 
   public async post<T>(url: string, body: any = {}): Promise<T> {
-    console.log(BASE_URL)
     const { data } = await this.axios.post<T>(url, body)
     return data
   }
 }
+
+export const useAxios = () => AxiosService.init()

@@ -1,14 +1,12 @@
 import { IApiBase } from "./api-base"
-import { AxiosService } from "./axios-service"
+import { useAxios } from "./axios"
 import { TSettingsRequest } from "./requests"
 import { TQuizResponse } from "./responses"
 
 export class WordQuiz implements IApiBase {
-  private axios: AxiosService
+  private axios = useAxios()
   private static instance: WordQuiz
-  private constructor() {
-    this.axios = AxiosService.init()
-  }
+  private constructor() {}
 
   public static init(): WordQuiz {
     if (!WordQuiz.instance) {

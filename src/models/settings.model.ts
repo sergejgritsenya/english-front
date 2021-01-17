@@ -6,6 +6,7 @@ export const SettingsModel = types
   .model({
     size: 25,
     language: ESettingLanguage.mixed,
+    is_mark: false,
   })
   .actions((self) => ({
     reset() {
@@ -17,6 +18,9 @@ export const SettingsModel = types
     },
     setLanguage(language: ESettingLanguage) {
       self.language = language
+    },
+    setIsMark(is_mark: boolean) {
+      self.is_mark = is_mark
     },
   }))
   .views((self) => ({

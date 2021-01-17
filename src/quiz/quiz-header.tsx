@@ -17,12 +17,11 @@ export const QuizHeader: FC<TQuizHeaderProps> = ({ reset, score }) => {
 
   return (
     <div className={root}>
-      <AppBar position="static">
+      <AppBar position="fixed">
         <Toolbar>
           <Typography variant="h6" className={title}>
             Score: {score}
           </Typography>
-
           <Button className={btn} onClick={reset}>
             New test
           </Button>

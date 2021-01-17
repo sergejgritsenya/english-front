@@ -4,6 +4,7 @@ import React, { FC, useEffect, useMemo } from "react"
 import { useApi } from "../api/use-api"
 import { EApiName } from "../enums"
 import { QuizModel } from "../models"
+import { FinalDialog } from "./final-dialog"
 import { QuestionItem } from "./question-item"
 import { QuizHeader } from "./quiz-header"
 import { QuizSettings } from "./quiz-settings"
@@ -28,12 +29,19 @@ export const QuizRoot: FC<TQuizRootProps> = ({ api_name }) => {
       {() => (
         <>
           <QuizHeader reset={load} score={model.score} />
-          <Card style={{ paddingTop: "25px" }}>
-            <QuizSettings settings={model.settings} />
+          <QuizSettings settings={model.settings} />
+          <Card>
             <CardContent>
               {model.questions.map((question, index) => (
                 <QuestionItem key={index} question={question} />
               ))}
+              {model.show_dialog && (
+                <FinalDialog
+                  reset={load}
+                  score={model.score}
+                  is_mark={model.settings.is_mark}
+                />
+              )}
             </CardContent>
           </Card>
         </>

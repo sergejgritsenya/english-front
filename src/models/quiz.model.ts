@@ -19,6 +19,12 @@ export const QuizModel = types
     get score(): number {
       return self.questions.filter((question) => question.is_correct).length
     },
+    get show_dialog(): boolean {
+      return (
+        !!self.questions.length &&
+        self.questions.every((question) => question.is_answered)
+      )
+    },
   }))
 
 export interface IQuizModel extends Instance<typeof QuizModel> {}
